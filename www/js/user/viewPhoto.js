@@ -8,8 +8,11 @@ var selectedPhoto = {
         img: {},
         set: 
         function(img){
+            // aggiorno l'immagine
             this.img = img;
             this.listeners.forEach(
+                // per ogni listener
+                // lo invoco sull'immagine al cambiamento della stessa
                 function(fn){
                     fn(img);
                 });
@@ -17,21 +20,25 @@ var selectedPhoto = {
     };
 
 document.addEventListener("deviceready", function(){
-    captureShot = navigator.device.capture.captureImage;
+    // seleziono il plugin da utilizzare ed inizializzo il bottone per la foto
+    captureShot = navigator.camera.getPicture;
     document.getElementById("BTNSelectPhoto").onclick = onBTNClick;
+    // aggiungo un listener per aggiornare l'immagine visualizzata  
     selectedPhoto.addListener(function(img){
-       console.log(img); 
+       document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
     });
     
+    // saluto il mondo per assicurarmi che funzioni tutto
     selectedPhoto.test();
 }, false);
 
 function onBTNClick(){
-    captureShot(gotPhoto, errPhoto);
+    captureShot(gotPhoto, errPhoto, 
+                {quality: 80, destinationType: Camera.DestinationType.DATA_URL});
 }
 
-function gotPhoto(mediaFiles){
-    selectedPhoto.set(mediaFiles[0]);
+function gotPhoto(mediaFile){
+    selectedPhoto.set(mediaFile);
 }
 function errPhoto(err){
     alert("Errore nella cattura della foto.");
