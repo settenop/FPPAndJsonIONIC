@@ -64,6 +64,7 @@
         <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
         <script type="application/javascript" src="js/index_init_services.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/progressbar.js/dist/progressbar.js"></script>
         <script src="js/user/viewPhoto.js"></script>
         <script src="js/user/fpp.js"></script>
     </head>
@@ -78,7 +79,7 @@
             <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
                 <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
                     <div class="widget-container content-area vertical-col left">
-                        <button class="button widget uib_w_2 d-margins ion button-large ion-android-search" data-uib="ionic/button" data-ver="0" id="BTNSelectPhoto">Seleziona la tua foto</button>
+                        <button class="button widget uib_w_2 d-margins ion button-large ion-android-camera icon-left" data-uib="ionic/button" data-ver="0" id="BTNSelectPhoto">Scatta la tua foto</button>
                         <span class="uib_shim"></span>
                     </div>
                 </div>
@@ -89,7 +90,7 @@
                     <div class="widget-container content-area vertical-col">
                         <div class="widget uib_w_1 scale-image d-margins" data-uib="media/img" data-ver="0">
                             <figure class="figure-align">
-                                <img id="imgZone" src="images/Arrow.png">
+                                <img id="imgZone">
 
                                 <figcaption data-position="bottom"></figcaption>
                             </figure>
@@ -102,7 +103,7 @@
             <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
                 <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
                     <div class="widget-container content-area vertical-col">
-                        <button class="button widget uib_w_3 d-margins ion ion-android-send icon-right" data-uib="ionic/button" data-ver="0" id="BTNSendPhoto">Invia la foto a FPP</button>
+                        <button class="button widget uib_w_3 d-margins ion ion-android-send icon-right" data-uib="ionic/button" data-ver="0" id="BTNSendPhoto">Analizza la foto</button>
                         <span class="uib_shim"></span>
                     </div>
                 </div>

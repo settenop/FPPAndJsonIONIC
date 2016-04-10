@@ -2,25 +2,82 @@ var BTNSendID = "BTNSendPhoto";
 var IMGZoneID = "imgZone";
 var PInfoID = "FPPStats";
 var img = new FormData();
+var bars = [];
+function defBarObj (text) { 
+  return {
+      strokeWidth: 12,
+      from: { color: '#ff0000'},
+      to: {color: '#00ff00'},
+      text: {value: text + ': 0', style: {color: '#000',
+                                 position: 'absolute',
+                                 left: '10%',
+                                 top: '30%',
+                                 padding: '0',
+                                 margin: '0'
+                                } 
+      },
+      step: function (state, bar) {
+        bar.path.setAttribute('stroke', state.color);
+        bar.setText( text + ': ' + (bar.value() * 100).toFixed(0) );
+      }
+  }
+}
+
+
 
 document.addEventListener("deviceready", onDeviceReady, false);
+
 function onDeviceReady () {
+    document.getElementById(BTNSendID).disabled = true;
     document.getElementById(BTNSendID).onclick = sendFPP;
     selectedPhoto.addListener(function(){
        // Quando l'immagine selezionata viene cambiata
        // aggiorna il FormData
        updateImgFD();
+       document.getElementById(BTNSendID).disabled = false;
     });
+    var el = document.getElementById(PInfoID);
+    containerCreate('Age', el);
+    containerCreate('Gender', el);
+    containerCreate('Race', el);
+    containerCreate('Smile', el);
 }
 
 function sendFPP () {
     send();
 }
 
+function containerCreate (id, parent) {
+    var container = document.createElement("DIV");
+    container.setAttribute("id", id);
+    parent.appendChild(container);
+}
+
+
+
 function updateInfo (FPPResponse) {
     console.log(FPPResponse);
-    console.log(FPPResponse.img_height);
+    if (FPPResponse.face.length) {
+        var faccia = FPPResponse.face[0].attribute;
+        // creo le progressbar
+        if(bars.length)
+            bars.forEach(
+                function (el) {
+                    el.destroy();
+                }
+            )
+        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age'));
+        bars[0].animate(faccia.age.value / 100);
+        bars[1] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
+        bars[1].animate(faccia.gender.confidence / 100);
+        bars[2] = new ProgressBar.Line('#Race', defBarObj(faccia.race.value));
+        bars[2].animate(faccia.race.confidence / 100);
+        bars[3] = new ProgressBar.Line('#Smile', defBarObj('Smiling'));
+        bars[3].animate(faccia.smiling.value / 100);
+    }
 }
+
+
 
 function errorInfo () {
     
@@ -41,6 +98,8 @@ function send () {{
 
 
 function updateImgFD () {
+    delete img;
+    img = new FormData();
     img.append( 'img', new Blob([ new
                 Uint8Array(convertDataURIToBinary(document.getElementById(IMGZoneID).src)) ], 
                 {type: 'image/jpeg'} ));
