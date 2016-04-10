@@ -1557,3 +1557,28 @@ body#afui .splt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+.bar > .buttons .d-margins {
+  margin: auto;
+}
+.bar {
+  z-index: 1;
+}
+.upage-outer.fixed-header-footer {
+  position: static;
+}
+@media all {
+  .style-37 {
+    background-color: #f3f3f3;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+@media all {
+  .style-92 > .content-area {
+    background-color: #e1e1e1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+}
