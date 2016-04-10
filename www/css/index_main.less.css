@@ -308,10 +308,7 @@ body#afui .splt {
   vertical-align: middle;
 }
 @media all {
-  .scale-image img {
-    width: 150px;
-    height: 200px;
-  }
+  
 }
 @media all {
   .wrapping-col > .d-margins,
@@ -1581,4 +1578,9 @@ body#afui .splt {
     background-repeat: no-repeat;
     background-attachment: scroll;
   }
+}
+.list .d-margins,
+.button-bar .d-margins,
+.tabs .d-margins {
+  margin: 0;
 }
