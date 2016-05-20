@@ -8,12 +8,13 @@ function defBarObj (text) {
       strokeWidth: 12,
       from: { color: '#ff0000'},
       to: {color: '#00ff00'},
-      text: {value: text + ': 0', style: {color: '#000',
+      text: {value: text + ': 0', style: {color: '#fff',
                                  position: 'absolute',
                                  left: '10%',
                                  top: '30%',
-                                 padding: '0',
-                                 margin: '0'
+                                 padding: '0 5px 0 5px',
+                                 margin: '0',
+                                 background: 'rgba(0,0,0,0.6)'
                                 } 
       },
       step: function (state, bar) {
@@ -66,7 +67,7 @@ function updateInfo (FPPResponse) {
                     el.destroy();
                 }
             )
-        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age'));
+        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age (+-' + faccia.age.range + ')'));
         bars[0].animate(faccia.age.value / 100);
         bars[1] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
         bars[1].animate(faccia.gender.confidence / 100);

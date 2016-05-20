@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "41d52718-0cf6-43f7-94c6-f10962b1198b",
-      "lastModifiedDate": 1460250776250,
+      "lastModifiedDate": 1463737158071,
       "creationDate": 1459892208912
     },
     "XDK-app-designer": "true",
@@ -142,7 +142,7 @@
     "buildConfigurations": {
       "Android": {
         "platform_": "android",
-        "runtime_": "Crosswalk with Cordova 3.x",
+        "runtime_": "Cordova 3.x",
         "name_": "Android",
         "preferences_": {
           "android-minSdkVersion": "14",
