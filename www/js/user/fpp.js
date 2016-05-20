@@ -66,8 +66,8 @@ function updateInfo (FPPResponse) {
                 function (el) {
                     el.destroy();
                 }
-            )
-        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age (+-' + faccia.age.range + ')'));
+            );
+        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age ( &plusmn;' + faccia.age.range + ' )'));
         bars[0].animate(faccia.age.value / 100);
         bars[1] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
         bars[1].animate(faccia.gender.confidence / 100);
@@ -75,13 +75,22 @@ function updateInfo (FPPResponse) {
         bars[2].animate(faccia.race.confidence / 100);
         bars[3] = new ProgressBar.Line('#Smile', defBarObj('Smiling'));
         bars[3].animate(faccia.smiling.value / 100);
+    } else {
+        alert("Non è stato rilevato alcun volto =(\nScatta una foto migliore!");
     }
 }
 
 
 
-function errorInfo () {
-    
+function errorInfo (jqHXR,e) {
+    if (jqHXR.status === 0) {
+        alert("Impossibile connettersi.\nControlla rete, firewall o impostazioni.\n");
+    } else if (e == "Timout") {
+        alert("La richiesta è scaduta =(.\n");
+    } else {
+        alert("Un errore sconosciuto si è verificato.\n");
+        console.log(jqHXR.responseText);
+    }
 }
 
 function send () {{
@@ -93,6 +102,9 @@ function send () {{
         processData: false,
         success: function(response) {
             updateInfo(response);
+        },
+        error: function(jqHXR, e) {
+            errorInfo(jqHXR,e);
         }
     });
 }}

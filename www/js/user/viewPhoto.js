@@ -34,7 +34,7 @@ document.addEventListener("deviceready", function(){
 
 function onBTNClick(){
     captureShot(gotPhoto, errPhoto, 
-                {quality: 50, destinationType: Camera.DestinationType.DATA_URL});
+                {quality: 100, destinationType: Camera.DestinationType.DATA_URL});
 }
 
 function gotPhoto(mediaFile){
