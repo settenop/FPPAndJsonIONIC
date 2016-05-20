@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "41d52718-0cf6-43f7-94c6-f10962b1198b",
-      "lastModifiedDate": 1463737158071,
+      "lastModifiedDate": 1463753275074,
       "creationDate": 1459892208912
     },
     "XDK-app-designer": "true",
@@ -169,8 +169,90 @@
           ],
           "navigation": []
         },
-        "icons_": [],
-        "splashes_": [],
+        "icons_": [
+          {
+            "relPath": "splashAndIcons/icons/icon36.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "splashAndIcons/icons/icon48.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "splashAndIcons/icons/icon72.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "splashAndIcons/icons/icon96.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "splashAndIcons/splash/portrait/Splash320426.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "splashAndIcons/splash/portrait/Splash320470.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "splashAndIcons/splash/portrait/Splash480640.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "splashAndIcons/splash/portrait/Splash720960.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "splashAndIcons/splash/landscape/Splash246320.png",
+            "density": "ldpi",
+            "height": 320,
+            "width": 426,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "splashAndIcons/splash/landscape/Splash470320.png",
+            "density": "mdpi",
+            "height": 320,
+            "width": 470,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "splashAndIcons/splash/landscape/Splash640480.png",
+            "density": "hdpi",
+            "height": 480,
+            "width": 640,
+            "orientation": "landscape"
+          },
+          {
+            "relPath": "splashAndIcons/splash/landscape/Splash960720.png",
+            "density": "xhdpi",
+            "height": 720,
+            "width": 960,
+            "orientation": "landscape"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "certificateId_": "Ztli64lVXEiT9q_xvh5NEg2",
