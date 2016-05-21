@@ -37,7 +37,8 @@ document.addEventListener("deviceready", function(){
 
 function onBTNClick(){
     captureShot(gotPhoto, errPhoto, 
-                {quality: 80, destinationType: Camera.DestinationType.DATA_URL});
+                {  quality: document.getElementById("qualitySlider").firstElementChild.value
+                 , destinationType: Camera.DestinationType.DATA_URL} );
 }
 
 function gotPhoto(mediaFile){

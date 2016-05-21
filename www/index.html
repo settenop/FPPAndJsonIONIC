@@ -85,7 +85,9 @@
                         <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col left">
                                 <button class="button widget uib_w_2 d-margins ion button-large ion-android-camera icon-left" data-uib="ionic/button" data-ver="0" id="BTNSelectPhoto">Scatta la tua foto</button>
-                                <span class="uib_shim"></span>
+                                <div class="item range widget uib_w_6 d-margins style-48 range-positive" data-uib="ionic/range" data-ver="0" id="qualitySlider">
+                                    <input type="range" max="100" value="70" step="1" min="40">
+                                </div><span class="uib_shim"></span>
                             </div>
                         </div>
                         <span class="uib_shim"></span>
@@ -105,18 +107,11 @@
                         </div>
                         <span class="uib_shim"></span>
                     </div>
-                    <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
-                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
-                            <div class="widget-container content-area vertical-col">
-                                <button class="button widget uib_w_3 d-margins ion ion-android-send icon-right" data-uib="ionic/button" data-ver="0" id="BTNSendPhoto">Analizza la foto</button>
-                                <span class="uib_shim"></span>
-                            </div>
-                        </div>
-                        <span class="uib_shim"></span>
-                    </div>
+
                     <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_6 col-0_12-12 style-92" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
+                                <button class="button widget uib_w_3 d-margins ion ion-android-send icon-right" data-uib="ionic/button" data-ver="0" id="BTNSendPhoto">Analizza la foto</button>
                                 <p id="FPPStats"></p>
                                 <span class="uib_shim"></span>
                             </div>

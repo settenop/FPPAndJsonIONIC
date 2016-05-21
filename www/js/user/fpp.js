@@ -130,7 +130,7 @@ function errorInfo (jqHXR,e) {
     } else if (e == "Timout") {
         alert("La richiesta è scaduta =(.\n");
     } else {
-        alert("Un errore sconosciuto si è verificato.\n");
+        alert("Un errore sconosciuto si è verificato.\nSpesso risolvibile abbassando la qualità della foto.\n");
     }
 }
 
