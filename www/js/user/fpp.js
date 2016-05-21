@@ -131,7 +131,6 @@ function errorInfo (jqHXR,e) {
         alert("La richiesta è scaduta =(.\n");
     } else {
         alert("Un errore sconosciuto si è verificato.\n");
-        console.log(jqHXR.responseText);
     }
 }
 

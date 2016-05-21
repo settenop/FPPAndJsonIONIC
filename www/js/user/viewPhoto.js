@@ -24,17 +24,20 @@ document.addEventListener("deviceready", function(){
     captureShot = navigator.camera.getPicture;
     document.getElementById("BTNSelectPhoto").onclick = onBTNClick;
     // aggiungo un listener per aggiornare l'immagine visualizzata  
-    selectedPhoto.addListener(function(img){
-       document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
-    });
-    
+    selectedPhoto.addListener( function(img){
+        document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
+    } );
+    //aggiungo un listener per salvare l'immagine nella galleria
+    selectedPhoto.addListener( function(img){
+        cordova.base64ToGallery(img);
+    } );
     // saluto il mondo per assicurarmi che funzioni tutto
     selectedPhoto.test();
 }, false);
 
 function onBTNClick(){
     captureShot(gotPhoto, errPhoto, 
-                {quality: 100, destinationType: Camera.DestinationType.DATA_URL});
+                {quality: 80, destinationType: Camera.DestinationType.DATA_URL});
 }
 
 function gotPhoto(mediaFile){
