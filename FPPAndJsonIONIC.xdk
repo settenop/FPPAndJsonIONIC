@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "41d52718-0cf6-43f7-94c6-f10962b1198b",
-      "lastModifiedDate": 1463834119413,
+      "lastModifiedDate": 1463841923002,
       "creationDate": 1459892208912
     },
     "XDK-app-designer": "true",
@@ -139,25 +139,27 @@
         "dependedBy": []
       },
       {
-        "id": "cordova-base64-to-gallery",
-        "name": "base64ToGallery",
-        "version": "4.1.1",
+        "id": "cordova-save-image-gallery",
+        "name": "saveImageGallery",
+        "version": "0.0.18",
         "originType": "cordova.io",
-        "origin": "cordova-base64-to-gallery",
+        "origin": "cordova-save-image-gallery",
         "gitref": "",
         "paramvals": {},
-        "sourceLocation": "plugins/cordova-base64-to-gallery",
+        "sourceLocation": "plugins/cordova-save-image-gallery",
         "selectedState": "Included",
-        "checksum": "1d0a2a1",
+        "checksum": "305d677b",
         "dependsOn": [],
         "topLevel": true,
-        "author": "Tommy-Carlos Williams - tommy@devgeeks.org",
+        "cordovaVersion": ">=3.0.0",
+        "author": "Alejandro Gomez - agommor@gmail.com",
         "permissions": {
           "android:name": [
-            "android.permission.WRITE_EXTERNAL_STORAGE"
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.DELETE_CACHE_FILES"
           ]
         },
-        "description": "This plugin allows you to save base64 data as a png image into the device (iOS Photo Library, Android Gallery, WindowsPhone 8 Photo Album).",
+        "description": "This plugin allows you to save base64 data as a png/jpg image into the device (iOS Photo Library, Android Gallery, WindowsPhone 8 Photo Album) compressing also the image if needed.",
         "data": {},
         "dependedBy": [],
         "custom": "true"

@@ -1,4 +1,5 @@
 var BTNSendID = "BTNSendPhoto";
+var BTNShotID = "BTNSelectPhoto";
 var IMGZoneID = "imgZone";
 var PInfoID = "FPPStats";
 var target;
@@ -92,10 +93,12 @@ function onDeviceReady () {
     });
     $(document).ajaxStart( function() {
         spinner.spin(target);
+        document.getElementById(BTNShotID).disabled = true;
         document.getElementById(BTNSendID).disabled = true;
     } );
     $(document).ajaxStop( function() {
         spinner.stop();
+        document.getElementById(BTNShotID).disabled = false;
         document.getElementById(BTNSendID).disabled = false;
     } );
     var el = document.getElementById(PInfoID);

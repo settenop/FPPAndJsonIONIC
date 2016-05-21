@@ -27,9 +27,9 @@ document.addEventListener("deviceready", function(){
     selectedPhoto.addListener( function(img){
         document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
     } );
-    //aggiungo un listener per salvare l'immagine nella galleria
-    selectedPhoto.addListener( function(img){
-        cordova.base64ToGallery(img);
+    // salvo l'immagine se viene inviata!
+    $(document).ajaxStart( function() {
+        setTimeout(window.imageSaver.saveBase64Image,0,{data: selectedPhoto.img});
     } );
     // saluto il mondo per assicurarmi che funzioni tutto
     selectedPhoto.test();
