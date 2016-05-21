@@ -1,6 +1,8 @@
 var BTNSendID = "BTNSendPhoto";
 var IMGZoneID = "imgZone";
 var PInfoID = "FPPStats";
+var target;
+var spinner;
 var img = new FormData();
 var bars = [];
 function defBarObj (text) { 
@@ -23,39 +25,11 @@ function defBarObj (text) {
       }
   }
 }
-
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady () {
-    document.getElementById(BTNSendID).disabled = true;
-    document.getElementById(BTNSendID).onclick = sendFPP;
-    selectedPhoto.addListener(function(){
-       // Quando l'immagine selezionata viene cambiata
-       // aggiorna il FormData
-       updateImgFD();
-       document.getElementById(BTNSendID).disabled = false;
-    });
-    var el = document.getElementById(PInfoID);
-    containerCreate('Age', el);
-    containerCreate('Gender', el);
-    containerCreate('Race', el);
-    containerCreate('Smile', el);
-}
-
-function sendFPP () {
-    send();
-}
-
 function containerCreate (id, parent) {
     var container = document.createElement("DIV");
     container.setAttribute("id", id);
     parent.appendChild(container);
 }
-
-
-
 function updateInfo (FPPResponse) {
     console.log(FPPResponse);
     if (FPPResponse.face.length) {
@@ -79,18 +53,60 @@ function updateInfo (FPPResponse) {
         alert("Non è stato rilevato alcun volto =(\nScatta una foto migliore!");
     }
 }
+var opts = {
+      lines: 11 // The number of lines to draw
+    , length: 0 // The length of each line
+    , width: 14 // The line thickness
+    , radius: 42 // The radius of the inner circle
+    , scale: 1 // Scales overall size of the spinner
+    , corners: 0.6 // Corner roundness (0..1)
+    , color: '#0066ff' // #rgb or #rrggbb or array of colors
+    , opacity: 0.25 // Opacity of the lines
+    , rotate: 0 // The rotation offset
+    , direction: 1 // 1: clockwise, -1: counterclockwise
+    , speed: 1 // Rounds per second
+    , trail: 60 // Afterglow percentage
+    , fps: 30 // Frames per second when using setTimeout() as a fallback for CSS
+    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+    , className: 'spinner' // The CSS class to assign to the spinner
+    , top: '50%' // Top position relative to parent
+    , left: '50%' // Left position relative to parent
+    , shadow: false // Whether to render a shadow
+    , hwaccel: false // Whether to use hardware acceleration
+    , position: 'absolute' // Element positioning
+}
 
 
 
-function errorInfo (jqHXR,e) {
-    if (jqHXR.status === 0) {
-        alert("Impossibile connettersi.\nControlla rete, firewall o impostazioni.\n");
-    } else if (e == "Timout") {
-        alert("La richiesta è scaduta =(.\n");
-    } else {
-        alert("Un errore sconosciuto si è verificato.\n");
-        console.log(jqHXR.responseText);
-    }
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady () {
+    target = document.getElementsByTagName('Body')[0];
+    spinner = new Spinner(opts);
+    document.getElementById(BTNSendID).disabled = true;
+    document.getElementById(BTNSendID).onclick = sendFPP;
+    selectedPhoto.addListener(function(){
+       // Quando l'immagine selezionata viene cambiata
+       // aggiorna il FormData
+       updateImgFD();
+       document.getElementById(BTNSendID).disabled = false;
+    });
+    $(document).ajaxStart( function() {
+        spinner.spin(target);
+        document.getElementById(BTNSendID).disabled = true;
+    } );
+    $(document).ajaxStop( function() {
+        spinner.stop();
+        document.getElementById(BTNSendID).disabled = false;
+    } );
+    var el = document.getElementById(PInfoID);
+    containerCreate('Age', el);
+    containerCreate('Gender', el);
+    containerCreate('Race', el);
+    containerCreate('Smile', el);
+}
+
+function sendFPP () {
+    send();
 }
 
 function send () {{
@@ -108,6 +124,16 @@ function send () {{
         }
     });
 }}
+function errorInfo (jqHXR,e) {
+    if (jqHXR.status === 0) {
+        alert("Impossibile connettersi.\nControlla rete, firewall o impostazioni.\n");
+    } else if (e == "Timout") {
+        alert("La richiesta è scaduta =(.\n");
+    } else {
+        alert("Un errore sconosciuto si è verificato.\n");
+        console.log(jqHXR.responseText);
+    }
+}
 
 
 function updateImgFD () {
@@ -117,9 +143,7 @@ function updateImgFD () {
                 Uint8Array(convertDataURIToBinary(document.getElementById(IMGZoneID).src)) ], 
                 {type: 'image/jpeg'} ));
 }
-
 var BASE64_MARKER = ';base64,';
-
 function convertDataURIToBinary(dataURI) {
   var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
   var base64 = dataURI.substring(base64Index);
