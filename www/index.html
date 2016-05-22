@@ -82,9 +82,14 @@
             <div class="upage-outer fixed-header-footer">
                 <div class="upage-content ac0 content-area vertical-col left" id="page_8_15">
                     <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
-                        <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
+
+                        <div class="col uib_col_3 col-0" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col left">
-                                <button class="button widget uib_w_2 d-margins ion button-large ion-android-camera icon-left" data-uib="ionic/button" data-ver="0" id="BTNSelectPhoto">Scatta la tua foto</button>
+                                <div class="button-bar widget uib_w_7 d-margins" data-uib="ionic/button_bar" data-ver="0">
+                                    <button class="button widget uib_w_8 ion ion-android-camera icon-right" data-uib="ionic/button" data-ver="0" id="BTNSelectPhoto">Cheese!</button>
+                                    <button class="button widget uib_w_9 ion ion-android-folder icon-right" data-uib="ionic/button" data-ver="0" id="BTNLibraryPhoto">Select</button>
+                                </div>
+
                                 <div class="item range widget uib_w_6 d-margins style-48 range-positive" data-uib="ionic/range" data-ver="0" id="qualitySlider">
                                     <label style="float: left;">Quality:</label>
                                     <label style="float: left; margin-left: 1em;">Low</label>
@@ -93,6 +98,7 @@
                                 </div><span class="uib_shim"></span>
                             </div>
                         </div>
+
                         <span class="uib_shim"></span>
                     </div>
                     <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">

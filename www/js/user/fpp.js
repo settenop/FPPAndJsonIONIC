@@ -1,5 +1,6 @@
 var BTNSendID = "BTNSendPhoto";
 var BTNShotID = "BTNSelectPhoto";
+var BTNSelectID = "BTNLibraryPhoto";
 var IMGZoneID = "imgZone";
 var PInfoID = "FPPStats";
 var target;
@@ -42,14 +43,16 @@ function updateInfo (FPPResponse) {
                     el.destroy();
                 }
             );
-        bars[0] = new ProgressBar.Line('#Age', defBarObj('Age ( &plusmn;' + faccia.age.range + ' )'));
-        bars[0].animate(faccia.age.value / 100);
-        bars[1] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
-        bars[1].animate(faccia.gender.confidence / 100);
-        bars[2] = new ProgressBar.Line('#Race', defBarObj(faccia.race.value));
-        bars[2].animate(faccia.race.confidence / 100);
+        bars[0] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
+        bars[0].animate(faccia.gender.confidence / 100);
+        bars[1] = new ProgressBar.Line('#Race', defBarObj(faccia.race.value));
+        bars[1].animate(faccia.race.confidence / 100);
+        bars[2] = new ProgressBar.Line('#Age', defBarObj('Age ( &plusmn;' + faccia.age.range + ' )'));
+        bars[2].animate(faccia.age.value / 100);
         bars[3] = new ProgressBar.Line('#Smile', defBarObj('Smiling'));
         bars[3].animate(faccia.smiling.value / 100);
+        bars[4] = new ProgressBar.Line('#Glass', defBarObj('Glass type: ' + faccia.glass.value));
+        bars[4].animate(faccia.glass.confidence / 100);
     } else {
         alert("Non è stato rilevato alcun volto =(\nScatta una foto migliore!");
     }
@@ -93,18 +96,21 @@ function onDeviceReady () {
     });
     $(document).ajaxStart( function() {
         spinner.spin(target);
+        document.getElementById(BTNSelectID).disabled = true;
         document.getElementById(BTNShotID).disabled = true;
         document.getElementById(BTNSendID).disabled = true;
     } );
     $(document).ajaxStop( function() {
         spinner.stop();
+        document.getElementById(BTNSelectID).disabled = false;
         document.getElementById(BTNShotID).disabled = false;
         document.getElementById(BTNSendID).disabled = false;
     } );
     var el = document.getElementById(PInfoID);
-    containerCreate('Age', el);
     containerCreate('Gender', el);
     containerCreate('Race', el);
+    containerCreate('Age', el);
+    containerCreate('Glass', el);
     containerCreate('Smile', el);
 }
 
@@ -114,7 +120,7 @@ function sendFPP () {
 
 function send () {{
     $.ajax({
-        url: 'https://apius.faceplusplus.com/v2/detection/detect?api_key=cdeda83f5f336aaa9b7839c091a01d1c&api_secret=IqmPFMPjplP-kl9T7jHobtK5jq6JDz6_',
+        url: 'https://apius.faceplusplus.com/v2/detection/detect?api_key=cdeda83f5f336aaa9b7839c091a01d1c&api_secret=IqmPFMPjplP-kl9T7jHobtK5jq6JDz6_&attribute=glass,gender,age,race,smiling',
         type: 'POST',
         data: img,
         contentType: false,

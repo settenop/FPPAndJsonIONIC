@@ -1,9 +1,10 @@
 var BTNShotID = "BTNSelectPhoto";
+var BTNSelectID = "BTNLibraryPhoto";
 var IMGZoneID = "imgZone";
 var captureShot = null;
 var selectedPhoto = {
         listeners: [],
-        test: function(){console.log("Salve mondo!");},
+        shouldSave: false,
         addListener: function(fn){this.listeners.push(fn);},
         img: {},
         set: 
@@ -22,25 +23,34 @@ var selectedPhoto = {
 document.addEventListener("deviceready", function(){
     // seleziono il plugin da utilizzare ed inizializzo il bottone per la foto
     captureShot = navigator.camera.getPicture;
-    document.getElementById("BTNSelectPhoto").onclick = onBTNClick;
+    document.getElementById(BTNShotID).onclick = onBTNClick;
+    document.getElementById(BTNSelectID).onclick = onBTNSelectClick;
     // aggiungo un listener per aggiornare l'immagine visualizzata  
     selectedPhoto.addListener( function(img){
         document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
     } );
     // salvo l'immagine se viene inviata!
+    // in ajaxStart per essere parallelo all'upload della foto
     $(document).ajaxStart( function() {
-        setTimeout(window.imageSaver.saveBase64Image,0,{data: selectedPhoto.img});
+        if(selectedPhoto.shouldSave)
+            setTimeout(window.imageSaver.saveBase64Image,0,{data: selectedPhoto.img});
     } );
-    // saluto il mondo per assicurarmi che funzioni tutto
-    selectedPhoto.test();
 }, false);
 
 function onBTNClick(){
+    selectedPhoto.shouldSave = true;
     captureShot(gotPhoto, errPhoto, 
                 {  quality: document.getElementById("qualitySlider").firstElementChild.value
                  , destinationType: Camera.DestinationType.DATA_URL} );
 }
-
+function onBTNSelectClick(){
+    selectedPhoto.shouldSave = false;
+    //seleziona la foto dalla libreria
+    captureShot(gotPhoto, errPhoto,
+               {  quality: document.getElementById("qualitySlider").firstElementChild.value
+                , destinationType: Camera.DestinationType.DATA_URL
+                , sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
+}
 function gotPhoto(mediaFile){
     selectedPhoto.set(mediaFile);
 }
