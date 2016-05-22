@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "41d52718-0cf6-43f7-94c6-f10962b1198b",
-      "lastModifiedDate": 1463841923002,
+      "lastModifiedDate": 1463880453047,
       "creationDate": 1459892208912
     },
     "XDK-app-designer": "true",
@@ -71,52 +71,6 @@
         "checksum": "452a4659"
       },
       {
-        "id": "cordova-plugin-file",
-        "name": "File",
-        "version": "4.1.0",
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-file",
-        "gitref": "",
-        "paramvals": {},
-        "sourceLocation": "plugins/cordova-plugin-file",
-        "selectedState": "Included",
-        "checksum": "77b7c7b6",
-        "dependsOn": [],
-        "topLevel": false,
-        "permissions": {
-          "android:name": [
-            "android.permission.WRITE_EXTERNAL_STORAGE"
-          ]
-        },
-        "description": "Cordova File Plugin",
-        "data": {},
-        "dependedBy": []
-      },
-      {
-        "id": "cordova-plugin-media-capture",
-        "name": "Capture",
-        "version": "1.2.0",
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-media-capture",
-        "gitref": "",
-        "paramvals": {},
-        "sourceLocation": "plugins/cordova-plugin-media-capture",
-        "selectedState": "Included",
-        "checksum": "fc48736e",
-        "dependsOn": [],
-        "topLevel": true,
-        "permissions": {
-          "android:name": [
-            "android.permission.RECORD_AUDIO",
-            "android.permission.RECORD_VIDEO",
-            "android.permission.WRITE_EXTERNAL_STORAGE"
-          ]
-        },
-        "description": "Cordova Media Capture Plugin",
-        "data": {},
-        "dependedBy": []
-      },
-      {
         "id": "cordova-plugin-camera",
         "name": "Camera",
         "version": "2.1.0",
@@ -174,10 +128,11 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "23",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": true,
+          "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "FPPAndJsonIONIC",
+        "appName_": "ArchiFaceReader",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
           "mode": "whitelist",
@@ -223,60 +178,32 @@
         ],
         "splashes_": [
           {
-            "relPath": "splashAndIcons/splash/portrait/Splash320426.png",
+            "relPath": "splashAndIcons/splash/portrait/SPLASH320426_9.9.png",
             "density": "ldpi",
             "height": 426,
             "width": 320,
             "orientation": "portrait"
           },
           {
-            "relPath": "splashAndIcons/splash/portrait/Splash320470.png",
+            "relPath": "splashAndIcons/splash/portrait/SPLASH320470_9.9.png",
             "density": "mdpi",
             "height": 470,
             "width": 320,
             "orientation": "portrait"
           },
           {
-            "relPath": "splashAndIcons/splash/portrait/Splash480640.png",
+            "relPath": "splashAndIcons/splash/portrait/SPLASH480_9.9.png",
             "density": "hdpi",
             "height": 640,
             "width": 480,
             "orientation": "portrait"
           },
           {
-            "relPath": "splashAndIcons/splash/portrait/Splash720960.png",
+            "relPath": "splashAndIcons/splash/portrait/SPLASH720_9.9.png",
             "density": "xhdpi",
             "height": 960,
             "width": 720,
             "orientation": "portrait"
-          },
-          {
-            "relPath": "splashAndIcons/splash/landscape/Splash246320.png",
-            "density": "ldpi",
-            "height": 320,
-            "width": 426,
-            "orientation": "landscape"
-          },
-          {
-            "relPath": "splashAndIcons/splash/landscape/Splash470320.png",
-            "density": "mdpi",
-            "height": 320,
-            "width": 470,
-            "orientation": "landscape"
-          },
-          {
-            "relPath": "splashAndIcons/splash/landscape/Splash640480.png",
-            "density": "hdpi",
-            "height": 480,
-            "width": 640,
-            "orientation": "landscape"
-          },
-          {
-            "relPath": "splashAndIcons/splash/landscape/Splash960720.png",
-            "density": "xhdpi",
-            "height": 720,
-            "width": 960,
-            "orientation": "landscape"
           }
         ],
         "addlPermissions_": "",
@@ -285,8 +212,8 @@
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "16",
         "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
+        "appAuthor_": "Scuola",
+        "appDescription_": "Applicazione che utilizza F++ sviluppata durante il corso di XDK",
         "appVersionCode_": "1"
       },
       "iOS": {
