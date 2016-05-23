@@ -38,12 +38,14 @@ document.addEventListener("deviceready", function(){
 }, false);
 
 function onBTNClick(){
+    document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = true;
     captureShot(gotPhoto, errPhoto, 
                 {  quality: document.getElementById("qualitySlider").firstElementChild.value
                  , destinationType: Camera.DestinationType.DATA_URL} );
 }
 function onBTNSelectClick(){
+    document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = false;
     //seleziona la foto dalla libreria
     captureShot(gotPhoto, errPhoto,

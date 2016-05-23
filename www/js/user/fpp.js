@@ -7,6 +7,8 @@ var target;
 var spinner;
 var img = new FormData();
 var bars = [];
+var FPPData = {};
+
 function defBarObj (text) { 
   return {
       strokeWidth: 12,
@@ -35,7 +37,9 @@ function containerCreate (id, parent) {
 function updateInfo (FPPResponse) {
     console.log(FPPResponse);
     if (FPPResponse.face.length) {
+        document.getElementById(BTNFaceShareID).disabled = false;
         var faccia = FPPResponse.face[0].attribute;
+        FPPData = faccia;
         // creo le progressbar
         if(bars.length)
             bars.forEach(
@@ -54,6 +58,7 @@ function updateInfo (FPPResponse) {
         bars[4] = new ProgressBar.Line('#Glass', defBarObj('Glass type: ' + faccia.glass.value));
         bars[4].animate(faccia.glass.confidence / 100);
     } else {
+        FPPData = null;
         alert("Non è stato rilevato alcun volto =(\nScatta una foto migliore!");
     }
 }
