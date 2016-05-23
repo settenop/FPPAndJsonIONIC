@@ -27,7 +27,7 @@ document.addEventListener("deviceready", function(){
     document.getElementById(BTNSelectID).onclick = onBTNSelectClick;
     // aggiungo un listener per aggiornare l'immagine visualizzata  
     selectedPhoto.addListener( function(img){
-        document.getElementById("imgZone").src = "data:image/jpeg;base64," + img;
+        document.getElementById("imgZone").src = img;
     } );
     // salvo l'immagine se viene inviata!
     // in ajaxStart per essere parallelo all'upload della foto
@@ -54,7 +54,7 @@ function onBTNSelectClick(){
                 , sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
 }
 function gotPhoto(mediaFile){
-    selectedPhoto.set(mediaFile);
+    selectedPhoto.set("data:image/jpeg;base64," + mediaFile);
 }
 function errPhoto(err){
     alert("Errore nella cattura della foto.");

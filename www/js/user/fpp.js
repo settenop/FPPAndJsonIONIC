@@ -93,10 +93,10 @@ function onDeviceReady () {
     spinner = new Spinner(opts);
     document.getElementById(BTNSendID).disabled = true;
     document.getElementById(BTNSendID).onclick = sendFPP;
-    selectedPhoto.addListener(function(){
+    selectedPhoto.addListener(function(imgData){
        // Quando l'immagine selezionata viene cambiata
        // aggiorna il FormData
-       updateImgFD();
+       updateImgFD(imgData);
        document.getElementById(BTNSendID).disabled = false;
     });
     $(document).ajaxStart( function() {
@@ -149,11 +149,11 @@ function errorInfo (jqHXR,e) {
 }
 
 
-function updateImgFD () {
+function updateImgFD (imgData) {
     delete img;
     img = new FormData();
     img.append( 'img', new Blob([ new
-                Uint8Array(convertDataURIToBinary(document.getElementById(IMGZoneID).src)) ], 
+                Uint8Array(convertDataURIToBinary(imgData)) ], 
                 {type: 'image/jpeg'} ));
 }
 var BASE64_MARKER = ';base64,';
