@@ -63,6 +63,6 @@ function shareOnFb(){
     //condividi l'immagine
     //VVV
     //utilizza il socialshare per condividere su facebook il canvas
-    window.plugins.socialsharing.share(null, 'ArchiFaceReader', canvas.toDataURL("image/jpeg", 0.7), null);
+    window.plugins.socialsharing.share(null, 'ArchiFaceReader', canvas.toDataURL("image/jpeg", qualityScale), null);
     } , 0);
 }

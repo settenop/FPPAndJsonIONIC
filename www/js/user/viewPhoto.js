@@ -41,17 +41,17 @@ function onBTNClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = true;
     captureShot(gotPhoto, errPhoto, 
-                {  quality: document.getElementById("qualitySlider").firstElementChild.value
-                 , destinationType: Camera.DestinationType.DATA_URL} );
+                {  quality: 70,
+                   destinationType: Camera.DestinationType.DATA_URL} );
 }
 function onBTNSelectClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = false;
     //seleziona la foto dalla libreria
     captureShot(gotPhoto, errPhoto,
-               {  quality: document.getElementById("qualitySlider").firstElementChild.value
-                , destinationType: Camera.DestinationType.DATA_URL
-                , sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
+               {  quality: 70,
+                  destinationType: Camera.DestinationType.DATA_URL,
+                  sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
 }
 function gotPhoto(mediaFile){
     selectedPhoto.set("data:image/jpeg;base64," + mediaFile);
