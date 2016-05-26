@@ -1,126 +1,18 @@
 var BTNSendID = "BTNSendPhoto";
-var BTNShotID = "BTNSelectPhoto";
-var BTNSelectID = "BTNLibraryPhoto";
-var IMGZoneID = "imgZone";
-var PInfoID = "FPPStats";
-var target;
-var spinner;
 var img = new FormData();
-var bars = [];
 var FPPData = {};
-
-function defBarObj (text) { 
-  return {
-      strokeWidth: 12,
-      from: { color: '#ff0000'},
-      to: {color: '#00ff00'},
-      text: {value: text + ': 0', style: {color: '#fff',
-                                 position: 'absolute',
-                                 left: '10%',
-                                 top: '30%',
-                                 padding: '0 5px 0 5px',
-                                 margin: '0',
-                                 background: 'rgba(0,0,0,0.6)'
-                                } 
-      },
-      step: function (state, bar) {
-        bar.path.setAttribute('stroke', state.color);
-        bar.setText( text + ': ' + (bar.value() * 100).toFixed(0) );
-      }
-  }
-}
-function containerCreate (id, parent) {
-    var container = document.createElement("DIV");
-    container.setAttribute("id", id);
-    parent.appendChild(container);
-}
-function updateInfo (FPPResponse) {
-    console.log(FPPResponse);
-    if (FPPResponse.face.length) {
-        document.getElementById(BTNFaceShareID).disabled = false;
-        var faccia = FPPResponse.face[0].attribute;
-        FPPData = faccia;
-        // creo le progressbar
-        if(bars.length)
-            bars.forEach(
-                function (el) {
-                    el.destroy();
-                }
-            );
-        bars[0] = new ProgressBar.Line('#Gender', defBarObj(faccia.gender.value));
-        bars[0].animate(faccia.gender.confidence / 100);
-        bars[1] = new ProgressBar.Line('#Race', defBarObj(faccia.race.value));
-        bars[1].animate(faccia.race.confidence / 100);
-        bars[2] = new ProgressBar.Line('#Age', defBarObj('Age ( &plusmn;' + faccia.age.range + ' )'));
-        bars[2].animate(faccia.age.value / 100);
-        bars[3] = new ProgressBar.Line('#Smile', defBarObj('Smiling'));
-        bars[3].animate(faccia.smiling.value / 100);
-        bars[4] = new ProgressBar.Line('#Glass', defBarObj('Glass type: ' + faccia.glass.value));
-        bars[4].animate(faccia.glass.confidence / 100);
-    } else {
-        FPPData = null;
-        alert("Non è stato rilevato alcun volto =(\nScatta una foto migliore!");
-    }
-}
-var opts = {
-      lines: 11 // The number of lines to draw
-    , length: 0 // The length of each line
-    , width: 14 // The line thickness
-    , radius: 42 // The radius of the inner circle
-    , scale: 1 // Scales overall size of the spinner
-    , corners: 0.6 // Corner roundness (0..1)
-    , color: '#0066ff' // #rgb or #rrggbb or array of colors
-    , opacity: 0.25 // Opacity of the lines
-    , rotate: 0 // The rotation offset
-    , direction: 1 // 1: clockwise, -1: counterclockwise
-    , speed: 1 // Rounds per second
-    , trail: 60 // Afterglow percentage
-    , fps: 30 // Frames per second when using setTimeout() as a fallback for CSS
-    , zIndex: 2e9 // The z-index (defaults to 2000000000)
-    , className: 'spinner' // The CSS class to assign to the spinner
-    , top: '50%' // Top position relative to parent
-    , left: '50%' // Left position relative to parent
-    , shadow: false // Whether to render a shadow
-    , hwaccel: false // Whether to use hardware acceleration
-    , position: 'absolute' // Element positioning
-}
-
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady () {
-    target = document.getElementsByTagName('Body')[0];
-    spinner = new Spinner(opts);
     document.getElementById(BTNSendID).disabled = true;
-    document.getElementById(BTNSendID).onclick = sendFPP;
+    document.getElementById(BTNSendID).onclick = send;
     selectedPhoto.addListener(function(imgData){
        // Quando l'immagine selezionata viene cambiata
        // aggiorna il FormData
        updateImgFD(imgData);
        document.getElementById(BTNSendID).disabled = false;
     });
-    $(document).ajaxStart( function() {
-        spinner.spin(target);
-        document.getElementById(BTNSelectID).disabled = true;
-        document.getElementById(BTNShotID).disabled = true;
-        document.getElementById(BTNSendID).disabled = true;
-    } );
-    $(document).ajaxStop( function() {
-        spinner.stop();
-        document.getElementById(BTNSelectID).disabled = false;
-        document.getElementById(BTNShotID).disabled = false;
-        document.getElementById(BTNSendID).disabled = false;
-    } );
-    var el = document.getElementById(PInfoID);
-    containerCreate('Gender', el);
-    containerCreate('Race', el);
-    containerCreate('Age', el);
-    containerCreate('Glass', el);
-    containerCreate('Smile', el);
-}
-
-function sendFPP () {
-    send();
 }
 
 function send () {{
@@ -150,7 +42,6 @@ function errorInfo (jqHXR,e) {
 
 
 function updateImgFD (imgData) {
-    delete img;
     img = new FormData();
     img.append( 'img', new Blob([ new
                 Uint8Array(convertDataURIToBinary(imgData)) ], 

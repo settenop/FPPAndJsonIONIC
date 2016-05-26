@@ -1,6 +1,6 @@
 var BTNFaceShareID = "shareButton";
 var IMGZoneID = "imgZone";
-var qualityScale = 0.7;
+var qualityScale = 1;
 
 document.addEventListener("deviceready", function (){
    document.getElementById(BTNFaceShareID).onclick = shareOnFb;

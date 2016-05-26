@@ -6,7 +6,7 @@ var selectedPhoto = {
         listeners: [],
         shouldSave: false,
         addListener: function(fn){this.listeners.push(fn);},
-        img: {},
+        img: null,
         set: 
         function(img){
             // aggiorno l'immagine
@@ -41,18 +41,19 @@ function onBTNClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = true;
     captureShot(gotPhoto, errPhoto, 
-                {  quality: 70,
-                   destinationType: Camera.DestinationType.DATA_URL} );
+                {  quality: 90,
+                   destinationType: Camera.DestinationType.DATA_URL } );
 }
 function onBTNSelectClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
     selectedPhoto.shouldSave = false;
     //seleziona la foto dalla libreria
     captureShot(gotPhoto, errPhoto,
-               {  quality: 70,
+               {  quality: 90,
                   destinationType: Camera.DestinationType.DATA_URL,
                   sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
 }
+
 function gotPhoto(mediaFile){
     selectedPhoto.set("data:image/jpeg;base64," + mediaFile);
 }
