@@ -4,7 +4,6 @@ var IMGZoneID = "imgZone";
 var captureShot = null;
 var selectedPhoto = {
         listeners: [],
-        shouldSave: false,
         addListener: function(fn){this.listeners.push(fn);},
         img: null,
         set: 
@@ -29,33 +28,26 @@ document.addEventListener("deviceready", function(){
     selectedPhoto.addListener( function(img){
         document.getElementById("imgZone").src = img;
     } );
-    // salvo l'immagine se viene inviata!
-    // in ajaxStart per essere parallelo all'upload della foto
-    $(document).ajaxStart( function() {
-        if(selectedPhoto.shouldSave)
-            setTimeout(window.imageSaver.saveBase64Image,0,{data: selectedPhoto.img});
-    } );
 }, false);
 
 function onBTNClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
-    selectedPhoto.shouldSave = true;
     captureShot(gotPhoto, errPhoto, 
                 {  quality: 90,
-                   destinationType: Camera.DestinationType.DATA_URL } );
+                   destinationType: Camera.DestinationType.FILE_URI,
+                   saveToPhotoAlbum: true } );
 }
 function onBTNSelectClick(){
     document.getElementById(BTNFaceShareID).disabled = true;
-    selectedPhoto.shouldSave = false;
     //seleziona la foto dalla libreria
     captureShot(gotPhoto, errPhoto,
                {  quality: 90,
-                  destinationType: Camera.DestinationType.DATA_URL,
+                  destinationType: Camera.DestinationType.FILE_URI,
                   sourceType: Camera.PictureSourceType.PHOTOLIBRARY} );
 }
 
 function gotPhoto(mediaFile){
-    selectedPhoto.set("data:image/jpeg;base64," + mediaFile);
+    selectedPhoto.set(mediaFile);
 }
 function errPhoto(err){
     alert("Errore nella cattura della foto.");

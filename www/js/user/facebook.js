@@ -20,7 +20,9 @@ function shareOnFb(){
     console.log("temp: " + temp.width + " " + temp.height);
     console.log("temp: " + document.getElementById(IMGZoneID).width + " " + document.getElementById(IMGZoneID).height)
     */
-    var temp = document.getElementById(IMGZoneID);
+    var temp = new Image();
+    temp.src = selectedPhoto.img;
+    //var temp = document.getElementById(IMGZoneID);
     //utilizza i canvas per scrivere i risultati dell'analisi su temp
     var canWidth = temp.naturalWidth;
     var canHeight = temp.naturalHeight;
